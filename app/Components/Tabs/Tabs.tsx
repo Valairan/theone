@@ -17,37 +17,36 @@ type TabProps = {
 const Tabs = ({ buttons, selectedTab, setSelectedTab }: TabProps) => {
 
     return (
-        <View
-            style={{
-                height: '50%',
-                width: '100%',
-            }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                {buttons.map((button, index) => {
-                    return (<TouchableOpacity
-                        style={{
-                            height: '100%',
-                            marginHorizontal: 12,
-                            flex: 1,
-                            flexDirection: 'row',
-                            alignContent: 'center',
-                            backgroundColor: '#00000000',
-                            borderBottomColor: '#b24d4d',
-                            borderBottomWidth: 2
-                        }}>
-                        <Text style={{
-                            height: '100%',
-                            width: '100%',
-                            textAlign: 'center',
-                            textAlignVertical: 'center',
-                            color: '#000',
-                            fontSize: 18
-                        }}>
-                            {button.title}
-                        </Text>
-                    </TouchableOpacity>)
-                })}
-            </View>
+
+        <View style={{
+            flexDirection: 'row',
+            height: '100%',
+            justifyContent: 'space-evenly', alignContent: 'center'
+        }}>
+            {buttons.map((button, index) => {
+                return (<TouchableOpacity
+                    key={index}
+                    style={{
+                        margin: 6,
+                        flex: 1,
+                        flexDirection: 'row',
+                        alignContent: 'center',
+                        borderRadius: 4,
+                        backgroundColor: selectedTab === index ? '#ea3c53' : '#00000000',
+                    }}
+                    onPress={() => setSelectedTab(index)}>
+                    <Text style={{
+                        height: '100%',
+                        width: '100%',
+                        textAlign: 'center',
+                        textAlignVertical: 'center',
+                        color: selectedTab === index ? '#FFF' : '#000',
+                        fontSize: 18
+                    }}>
+                        {button.title}
+                    </Text>
+                </TouchableOpacity>)
+            })}
         </View>
     );
 }
