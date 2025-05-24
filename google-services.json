@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "159264525243",
+    "project_id": "theone-63d46",
+    "storage_bucket": "theone-63d46.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159264525243:android:78d53fc1185a1851b0d29e",
+        "android_client_info": {
+          "package_name": "com.tiramesu.theone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGBSJLAwdGeGXgfeupI5N3Ty2rXvpagJs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
