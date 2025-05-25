@@ -29,14 +29,13 @@ const Tabs = ({ buttons, selectedTab, setSelectedTab }: TabProps) => {
                     style={{
                         margin: 6,
                         flex: 1,
-                        flexDirection: 'row',
+                        justifyContent: 'center',
                         alignContent: 'center',
                         borderRadius: 4,
                         backgroundColor: selectedTab === index ? '#ea3c53' : '#00000000',
                     }}
                     onPress={() => setSelectedTab(index)}>
                     <Text style={{
-                        height: '100%',
                         width: '100%',
                         textAlign: 'center',
                         textAlignVertical: 'center',
