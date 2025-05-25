@@ -14,7 +14,7 @@ import themeEventEmitter from '../Events/ThemeEvents'; // Make sure this path is
 type ThemeSetting = 'light' | 'dark' | 'system';
 
 interface ThemeContextType {
-  theme: ColorSchemeName;
+  theme: 'light' | 'dark' | null;
   themeSetting: ThemeSetting;
 }
 
