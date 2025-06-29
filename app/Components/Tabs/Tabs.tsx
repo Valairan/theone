@@ -24,7 +24,8 @@ const Tabs = ({ buttons, selectedTab, setSelectedTab }: TabProps) => {
             justifyContent: 'space-evenly', alignContent: 'center'
         }}>
             {buttons.map((button, index) => {
-                return (<TouchableOpacity
+                return (
+                <TouchableOpacity
                     key={index}
                     style={{
                         margin: 6,

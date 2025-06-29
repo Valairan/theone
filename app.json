@@ -9,13 +9,25 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
+
+      "entitlements": {
+        "aps-environment": "production"
+      },
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "fetch",
+          "remote-notification"
+        ],
+        "NSUserNotificationUsageDescription": "TheOne uses notifications to inform users about new matches.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "TheOne uses your location to match you with nearby dates and users.",
+        "ITSAppUsesNonExemptEncryption": false
+      },
       "supportsTablet": true,
       "bundleIdentifier": "com.tiramesu.theone",
-      "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
-      }
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#131516"
@@ -29,6 +41,18 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth",
+      "@react-native-firebase/messaging",
+      "@react-native-firebase/app-check",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",
@@ -36,7 +60,18 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#131516"
+          "android": {
+            "backgroundColor": "#fff",
+            "dark": {
+              "backgroundColor": "#131516"
+            }
+          },
+          "ios": {
+            "backgroundColor": "#fff",
+            "dark": {
+              "backgroundColor": "#131516"
+            }
+          }
         }
       ]
     ],

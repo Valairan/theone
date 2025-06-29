@@ -8,13 +8,13 @@ import React, {
 } from 'react';
 import { Appearance, ColorSchemeName } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import themeEventEmitter from '../Events/ThemeEvents'; // Make sure this path is correct
+import themeEventEmitter from '@/app/Components/Events/ThemeEvents'; // Make sure this path is correct
 
 // Theme setting type: can be 'light', 'dark', or 'system'
 type ThemeSetting = 'light' | 'dark' | 'system';
 
 interface ThemeContextType {
-  theme: 'light' | 'dark' | null;
+  theme: ColorSchemeName;
   themeSetting: ThemeSetting;
 }
 

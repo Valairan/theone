@@ -1,5 +1,6 @@
 import React, { act, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Button, Image, Dimensions } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import TopTabbedBar from '@/app/Components/Tabs/TabbedHeader';
 import Images from '@/app/ImageDatabase/images';
 import Card from '@/app/Basic/Card/CardParent';
@@ -22,6 +23,7 @@ const HEIGHT = Dimensions.get('screen').height
 
 export default function Index() {
 
+    const safetAreaTop = useSafeAreaInsets().top;
 
     const [activeTab, setActiveTab] = useState<customTab>(customTab.yourdates);
     const [dateDeets, setDateDeets] = useState<DateDeets[]>([{
@@ -56,6 +58,12 @@ export default function Index() {
                 height: '100%'
             }}
         >
+
+            <View style={{
+                width: '100%',
+                height: safetAreaTop,
+                backgroundColor: "#131516"
+            }} />
 
             <View style={{
                 height: HEIGHT * 0.18,
