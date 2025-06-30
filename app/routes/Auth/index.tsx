@@ -59,6 +59,9 @@ export default function Index() {
       width: '100%',
 
     }}>
+      <BasicButton title='Bypass' containerStyle={{ marginTop: '18%' }} onPress={async () => {
+        router.replace('/routes/Main')
+      }} />
       <Text style={{
         fontSize: 12,
         color: '#000',
@@ -83,7 +86,7 @@ export default function Index() {
               } catch (error) {
                 console.log('Invalid code.');
               }
-            } else {
+          } else {
             if (phone != null) {
               await signInWithPhoneNumber()
               setCodeEnter(true)
