@@ -13,7 +13,7 @@ import { styles as themes } from '../../styles';
 import ProfileField from '@/app/Components/Lists/ProfileFields';
 import BasicLabel from '@/app/Components/Lists/BasicLabel';
 import BasicButton from '@/app/Components/Buttons/Buttons';
-
+import ProfilePictureButton from '@/app/Components/Lists/ProfilePictureButton';
 
 const HEIGHT = Dimensions.get('screen').height
 
@@ -27,6 +27,11 @@ export default function Index() {
                 title="Edit Profile"
                 onBackPress={() => { router.replace('/routes/SettingsPage/settings') }}
                 style={{ marginBottom: 30 }}
+            />
+
+            <ProfilePictureButton
+                imagePath={Images.splash.s.uri}
+                containerStyle={{marginBottom: 16 }}
             />
 
             <BasicLabel

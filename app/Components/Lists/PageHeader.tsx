@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     backgroundColor: 'transparent',
-    // justifyContent: 'space-between',
     position: 'relative'
   },
   titleContainer: {
