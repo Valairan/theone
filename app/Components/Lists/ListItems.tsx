@@ -7,8 +7,8 @@ const HEIGHT = Dimensions.get('screen').height;
 interface ListItemProps {
   label: string;
   onPress?: () => void;
-  style?: object; // Custom styles for the container
-  textStyle?: object; // Custom styles for the label
+  style?: object;
+  textStyle?: object;
 }
 
 const ListItem: React.FC<ListItemProps> = ({ label, onPress, style, textStyle }) => {
@@ -20,13 +20,9 @@ const ListItem: React.FC<ListItemProps> = ({ label, onPress, style, textStyle })
     >
       <View style={styles.content}>
 
-        {/* Label Text */}
         <Text style={[styles.label, textStyle]}>{label}</Text>
 
-        {/* Arrow icon at the right */}
         <View style={styles.arrowContainer}>
-          {/* You can use an icon library here, e.g., react-native-vector-icons */}
-          {/* For simplicity, using a Unicode arrow */}
           <Text style={styles.arrow}>›</Text>
         </View>
       </View>
@@ -57,7 +53,6 @@ const styles = StyleSheet.create({
   },
   arrow: {
     fontSize: 20,
-    // color: '#999',
     color: themes.crayola
   },
 });

@@ -22,12 +22,11 @@ export default function Index() {
             <PageHeader
                 title="Settings"
                 onBackPress={() => {router.replace('/routes/Main')}}
-            // optional: style, titleStyle, arrowStyle
             />
             {/* <Text style={{ fontSize: 24 }}>settings</Text> */}
             <ListItem
                 label="My Account"
-                onPress={() => { }}
+                onPress={() => { router.replace('/routes/SettingsPage/myprofile') }}
             />
             <ListItem
                 label="Edit Profile"
