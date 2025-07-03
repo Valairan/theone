@@ -38,6 +38,27 @@ const Images = {
         }
     },
 
+
+    // dummy data
+    pfp: {
+        s: {
+            imageName: 'pfp',
+            uri: require('../../assets/images/dummydata/pfp.jpg')
+        }
+    },
+    gallery1: {
+        s: {
+            imageName: 'gallery1',
+            uri: require('../../assets/images/dummydata/gallery1.jpg')
+        }
+    },
+    gallery2: {
+        s: {
+            imageName: 'gallery2',
+            uri: require('../../assets/images/dummydata/gallery2.jpg')
+        }
+    },
+
 }
 
 
