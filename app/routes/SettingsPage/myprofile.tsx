@@ -25,7 +25,7 @@ export default function Index() {
         <ScrollView contentContainerStyle={{ padding: 20 }}>
             <PageHeader
                 title="Edit Profile"
-                onBackPress={() => { router.replace('/routes/SettingsPage/settings') }}
+                onBackPress={() => { router.replace('/routes/SettingsPage') }}
                 style={{ marginBottom: 30 }}
             />
 
