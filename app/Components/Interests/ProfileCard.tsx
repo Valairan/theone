@@ -13,7 +13,7 @@ const height = Dimensions.get('screen').height
 
 const SWIPE_THRESHOLD = width / 3;
 const SWIPE_THRESHOLD_VERTICAL = height / 5;
-const SWIPE_OUT_DURATION = 300; // how fast the card flies away
+const SWIPE_OUT_DURATION = 300;
 const SWIPE_OUT_DURATION_VERTICAL = 800;
 
 const BUTTON_SIZE = width / 4;
@@ -24,7 +24,7 @@ interface ProfileCardProps {
     onSwipeLeft?: () => void;
     onSwipeRight?: () => void;
     onSwipeUp?: () => void;
-    style?: any; // Used to stack cards
+    style?: any;
 }
 
 const getRandomColor = () => {
@@ -34,7 +34,6 @@ const getRandomColor = () => {
     return `rgb(${r}, ${g}, ${b})`;
 };
 
-// const [bgColor, setBgColor] = React.useState<string>(getRandomColor());
 
 const styles = StyleSheet.create({
     card: {
@@ -47,8 +46,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 4,
-
-        position: 'absolute', // important for stacking
+        position: 'absolute',
     },
 });
 
@@ -71,22 +69,13 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ onSwipeLeft, onSwipeRight, on
                 } else if (gesture.dx < -SWIPE_THRESHOLD) {
                     forceSwipe('left');
                 } else if (gesture.dy < -SWIPE_THRESHOLD_VERTICAL) {
-                    forceSwipe('up'); // NEW: swipe up detection
+                    forceSwipe('up');
                 } else {
                     resetPosition();
                 }
             },
         })
     ).current;
-
-    // const forceSwipe = (direction: 'left' | 'right') => {
-    //     const x = direction === 'right' ? width : -width;
-    //     Animated.timing(position, {
-    //         toValue: { x, y: 0 }, // animate only the x-axis
-    //         duration: SWIPE_OUT_DURATION,
-    //         useNativeDriver: false,
-    //     }).start(() => onSwipeComplete(direction));
-    // };
 
     const forceSwipe = (direction: 'left' | 'right' | 'up') => {
         let toValue;
@@ -111,25 +100,13 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ onSwipeLeft, onSwipeRight, on
         setIsVisible(false);
     };
 
-    // const onSwipeComplete = (direction: 'left' | 'right') => {
-    //     if (direction === 'right') {
-    //         onSwipeRight?.();
-    //     } else {
-    //         onSwipeLeft?.();
-    //     }
-
-    //     // reset for now, should be remove
-    //     // position.setValue({ x: 0, y: 0 });
-    //     removeCard();
-    // };
-
     const onSwipeComplete = (direction: 'left' | 'right' | 'up') => {
-        if (direction === 'right') {
+        if (direction === 'up') {
+            onSwipeUp?.();
+        } else if (direction === 'right') {
             onSwipeRight?.();
         } else if (direction === 'left') {
             onSwipeLeft?.();
-        } else if (direction === 'up') {
-            onSwipeUp?.();
         }
 
         removeCard(); // hide card after swipe
