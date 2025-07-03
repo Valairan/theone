@@ -21,12 +21,12 @@ export default function Index() {
         <ScrollView contentContainerStyle={{ padding: 20 }}>
             <PageHeader
                 title="Settings"
-                onBackPress={() => {router.replace('/routes/Main')}}
+                onBackPress={() => { router.replace('/routes/Main') }}
             />
-            {/* <Text style={{ fontSize: 24 }}>settings</Text> */}
+            <Text style={{ fontSize: 24 }}>mock tabs</Text>
             <ListItem
                 label="My Account"
-                onPress={() => { router.replace('/routes/SettingsPage/myprofile') }}
+                onPress={() => { }}
             />
             <ListItem
                 label="Edit Profile"
@@ -43,6 +43,17 @@ export default function Index() {
             <ListItem
                 label="FAQs"
                 onPress={() => { }}
+            />
+
+            <Text style={{ fontSize: 24 }}>testint routes below</Text>
+
+            <ListItem
+                label="myprofile"
+                onPress={() => { router.replace('/routes/SettingsPage/myprofile') }}
+            />
+            <ListItem
+                label="interests"
+                onPress={() => { router.replace('/routes/SettingsPage/interests') }}
             />
         </ScrollView >
     );

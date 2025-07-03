@@ -16,13 +16,7 @@ const iconPath = Images.stack.s.uri;
 const ProfilePictureButton: React.FC<ProfilePictureButtonProps> = ({ imagePath, containerStyle }) => {
     return (
         <View style={[styles.imageContainer, containerStyle]}>
-            {/* <Text>Hello</Text> */}
             {imagePath ? (
-                // <Image
-                //     source={{ uri: imagePath }}
-                //     style={styles.image}
-                //     resizeMode="cover"
-                // />
                 <Image
                     source={imagePath}
                     style={styles.image}
