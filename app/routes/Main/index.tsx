@@ -2,6 +2,7 @@ import React, { act, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Button, Image, Dimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import TopTabbedBar from '@/app/Components/Tabs/TabbedHeader';
+import { useRouter } from 'expo-router';
 import Images from '@/app/ImageDatabase/images';
 import Card from '@/app/Basic/Card/CardParent';
 import { Background } from '@react-navigation/elements';
@@ -23,6 +24,8 @@ const HEIGHT = Dimensions.get('screen').height
 
 export default function Index() {
 
+    const router = useRouter();
+    
     const safetAreaTop = useSafeAreaInsets().top;
 
     const [activeTab, setActiveTab] = useState<customTab>(customTab.yourdates);
@@ -52,18 +55,12 @@ export default function Index() {
 
         <View
             style={{
-                backgroundColor: "#fff",
+                backgroundColor: "#ffffff",
                 flex: 1,
                 width: '100%',
-                height: '100%'
             }}
         >
 
-            <View style={{
-                width: '100%',
-                height: safetAreaTop,
-                backgroundColor: "#131516"
-            }} />
 
             <View style={{
                 height: HEIGHT * 0.18,
@@ -111,7 +108,11 @@ export default function Index() {
                             <TouchableOpacity
                                 style={{
                                     flex: 1,
-                                }}>
+                                }}
+                                onPress={async () => {
+                                    router.push('/routes/SettingsPage/settings')
+                                  }}
+                                >
                                 <Image
                                     resizeMode='contain'
                                     source={Images.stack.s.uri}
