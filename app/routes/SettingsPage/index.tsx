@@ -45,7 +45,7 @@ export default function Index() {
                 onPress={() => { }}
             />
 
-            <Text style={{ fontSize: 24 }}>testint routes below</Text>
+            <Text style={{ fontSize: 24 }}>testing routes below</Text>
 
             <ListItem
                 label="myprofile"

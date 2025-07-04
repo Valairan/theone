@@ -4,9 +4,6 @@ import { styles as themes } from '../../styles';
 import { Image } from 'react-native';
 import Images from '@/app/ImageDatabase/images';
 import BasicButton from '../Buttons/Buttons';
-import LinearGradient from 'react-native-linear-gradient';
-
-
 
 const HEIGHT = Dimensions.get('screen').height
 const WIDTH = Dimensions.get('screen').width
@@ -16,9 +13,6 @@ const CARD_HEIGHT = WIDTH * 1.5
 
 const BUTTON_SIZE = WIDTH / 5
 const SMALL_BUTTON_SIZE = BUTTON_SIZE / 2
-
-let imageIndex = 0;
-
 
 interface ProfileCardProps {
   name: string;
@@ -66,8 +60,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle,
       <View style={styles.imageWrapper}>
         <Image source={uris[imageIndex]} style={styles.image} />
 
-
-        {/* Touch areas */}
         <TouchableOpacity
           style={styles.leftTouchable}
           onPress={() => {
@@ -81,15 +73,12 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle,
           }}
         />
 
-
         <View style={styles.fakeGradientOverlay} />
       </View>
-
 
       <View style={styles.imageBarsOverlay}>
         {imagesBarsToRender}
       </View>
-
 
       <View style={styles.buttonOverlayContainer}>
         <BasicButton
@@ -139,10 +128,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle,
             backgroundColor: 'yellow',
             borderWidth: 2,
             borderColor: themes.white,
-
             alignSelf: 'flex-end',
-            // top: -50
-
           }}
         // onPress={() => forceSwipe('up')}
         />
@@ -208,7 +194,7 @@ const styles = StyleSheet.create({
     width: CARD_WIDTH,
     height: CARD_HEIGHT,
     borderRadius: 32,
-    overflow: 'hidden', // make sure overlay stays within bounds
+    overflow: 'hidden',
     position: 'relative',
   },
 
@@ -223,9 +209,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: CARD_HEIGHT * 0.25, // gradient covers bottom half
+    height: CARD_HEIGHT * 0.25,
     backgroundColor: 'black',
-    opacity: 0.5, // tweak for desired darkness
+    opacity: 0.5,
   },
 
   leftTouchable: {
@@ -235,7 +221,7 @@ const styles = StyleSheet.create({
     left: 0,
     width: '20%',
     height: CARD_HEIGHT * 0.75,
-    zIndex: 2, // make sure it's above the image but below text/buttons
+    zIndex: 2,
     backgroundColor: 'rgba(255, 0, 0, 0.2)'
   },
 
