@@ -11,7 +11,8 @@ const SWIPE_OUT_DURATION = 300;
 const SWIPE_OUT_DURATION_VERTICAL = 800;
 
 interface SwipeScreenProps {
-  children: React.ReactNode; // Pass in the custom card component here
+  // children: React.ReactNode; // Pass in the custom card component here
+  children: (forceSwipe: (dir: 'left' | 'right' | 'up') => void) => React.ReactNode;
   onSwipeLeft?: () => void;
   onSwipeRight?: () => void;
   onSwipeUp?: () => void;
@@ -90,11 +91,18 @@ const SwipeScreen: React.FC<SwipeScreenProps> = ({ children, onSwipeLeft, onSwip
 
   if (!isVisible) return null;
 
+  // return (
+  //   <Animated.View style={[styles.card, animatedStyle, style]} {...panResponder.panHandlers}>
+  //     {children}
+  //   </Animated.View>
+  // );
+
   return (
     <Animated.View style={[styles.card, animatedStyle, style]} {...panResponder.panHandlers}>
-      {children}
+      {children(forceSwipe)}
     </Animated.View>
   );
+
 };
 
 const styles = StyleSheet.create({

@@ -1,223 +1,244 @@
-import React, { useRef, useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, ColorValue } from 'react-native';
+import React, { useState } from 'react';
+import { TouchableOpacity, Text, View, StyleSheet, Dimensions } from 'react-native';
 import { styles as themes } from '../../styles';
-import { Animated, PanResponder, PanResponderGestureState } from 'react-native';
-import BasicButton from '../Buttons/Buttons';
 import { Image } from 'react-native';
 import Images from '@/app/ImageDatabase/images';
+import BasicButton from '../Buttons/Buttons';
 
+const HEIGHT = Dimensions.get('screen').height
+const WIDTH = Dimensions.get('screen').width
 
-const { width } = Dimensions.get('window');
-const height = Dimensions.get('screen').height
+const CARD_WIDTH = WIDTH * 0.9
+const CARD_HEIGHT = WIDTH * 1.5
 
-
-const SWIPE_THRESHOLD = width / 3;
-const SWIPE_THRESHOLD_VERTICAL = height / 5;
-const SWIPE_OUT_DURATION = 300;
-const SWIPE_OUT_DURATION_VERTICAL = 800;
-
-const BUTTON_SIZE = width / 4;
-const SMALL_BUTTON_SIZE = BUTTON_SIZE / 2;
-
+const BUTTON_SIZE = WIDTH / 5
+const SMALL_BUTTON_SIZE = BUTTON_SIZE / 2
 
 interface ProfileCardProps {
-    onSwipeLeft?: () => void;
-    onSwipeRight?: () => void;
-    onSwipeUp?: () => void;
-    style?: any;
+  name: string;
+  age: number;
+  style?: object;
+  titleStyle?: object;
+  uris: any[];
+
+  onSwipe?: (dir: 'left' | 'right' | 'up') => void;
 }
 
-const getRandomColor = () => {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-    return `rgb(${r}, ${g}, ${b})`;
-};
+const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle, uris, onSwipe }) => {
 
+  const [imageIndex, setImageIndex] = useState(0);
+
+  function NextPic() {
+    if (imageIndex < uris.length - 1) {
+      setImageIndex(imageIndex + 1);
+    }
+  }
+
+  function PreviousPic() {
+    if (imageIndex > 0) {
+      setImageIndex(imageIndex - 1);
+    }
+  }
+
+  const imagesBarsToRender = [];
+  if (uris.length > 1) {
+    for (let i = 0; i < uris.length; i++) {
+      imagesBarsToRender.push(
+        <View
+          style={[styles.imageBar, {
+            width: (WIDTH * 0.7) / uris.length,
+            height: 8, // or desired height
+            backgroundColor: i == imageIndex ? themes.crayola : themes.white, // or any color
+          }]}
+        />
+
+      );
+    }
+  }
+
+  return (
+    <View style={[styles.container, style]}>
+
+      <View style={styles.imageWrapper}>
+        <Image source={uris[imageIndex]} style={styles.image} />
+
+        <TouchableOpacity
+          style={styles.leftTouchable}
+          onPress={() => {
+            PreviousPic();
+          }}
+        />
+        <TouchableOpacity
+          style={styles.rightTouchable}
+          onPress={() => {
+            NextPic()
+          }}
+        />
+
+        <View style={styles.fakeGradientOverlay} />
+      </View>
+
+      <View style={styles.imageBarsOverlay}>
+        {imagesBarsToRender}
+      </View>
+
+      <View style={styles.buttonOverlayContainer}>
+        <BasicButton
+          title={'X'}
+          textStyle={{
+            fontSize: BUTTON_SIZE * 3 / 4
+          }}
+          containerStyle={{
+            width: BUTTON_SIZE,
+            height: BUTTON_SIZE,
+            borderRadius: BUTTON_SIZE / 2,
+            backgroundColor: 'red',
+            borderWidth: 2,
+            borderColor: themes.white
+          }}
+        onPress={() => onSwipe?.('left')}
+        />
+
+        <BasicButton
+          title={'✓'}
+          textStyle={{
+            fontSize: BUTTON_SIZE * 3 / 4
+          }}
+          containerStyle={{
+            width: BUTTON_SIZE,
+            height: BUTTON_SIZE,
+            borderRadius: BUTTON_SIZE / 2,
+            backgroundColor: 'green',
+            borderWidth: 2,
+            borderColor: themes.white
+          }}
+        onPress={() => onSwipe?.('right')}
+        />
+      </View>
+
+      <View style={styles.profileButtonOverlayContainer}>
+        <BasicButton
+          title={'P'}
+          textStyle={{
+            fontSize: SMALL_BUTTON_SIZE * 3 / 4,
+            color: themes.night
+          }}
+          containerStyle={{
+            width: SMALL_BUTTON_SIZE,
+            height: SMALL_BUTTON_SIZE,
+            borderRadius: SMALL_BUTTON_SIZE / 2,
+            backgroundColor: 'yellow',
+            borderWidth: 2,
+            borderColor: themes.white,
+            alignSelf: 'flex-end',
+          }}
+          onPress={() => onSwipe?.('up')}
+        />
+      </View>
+
+      <View style={styles.textOverlayContainer}>
+        <Text style={[styles.title, titleStyle]}>{name}</Text>
+        <Text style={[styles.title, titleStyle]}>{age}</Text>
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    card: {
-        width: width * 0.9,
-        alignSelf: 'center',
-        backgroundColor: 'rgb(77, 77, 77)',
-        borderRadius: 32,
-        padding: 20,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 4,
-        position: 'absolute',
-    },
+  container: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: CARD_WIDTH,
+    alignSelf: 'center',
+    position: 'relative',
+  },
+  title: {
+    fontSize: 36,
+    fontWeight: 'bold',
+    color: themes.white,
+  },
+  buttonOverlayContainer: {
+    position: 'absolute',
+    bottom: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    marginHorizontal: CARD_WIDTH / 20,
+    width: '100%'
+  },
+  profileButtonOverlayContainer: {
+    position: 'absolute',
+    bottom: 5,
+    right: 5,
+  },
+  textOverlayContainer: {
+    position: 'absolute',
+    top: CARD_HEIGHT * 0.75,
+    left: 10,
+    padding: 5
+  },
+  imageBarsOverlay: {
+    position: 'absolute',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    alignSelf: 'flex-start',
+    top: 10,
+    width: '100%',
+    justifyContent: 'space-evenly',
+    paddingHorizontal: 10,
+  },
+  imageBar: {
+    borderRadius: 8,
+  },
+
+  imageWrapper: {
+    width: CARD_WIDTH,
+    height: CARD_HEIGHT,
+    borderRadius: 32,
+    overflow: 'hidden',
+    position: 'relative',
+  },
+
+  image: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+
+  fakeGradientOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: CARD_HEIGHT * 0.25,
+    backgroundColor: 'black',
+    opacity: 0.5,
+  },
+
+  leftTouchable: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    width: '20%',
+    height: CARD_HEIGHT * 0.75,
+    zIndex: 2,
+    backgroundColor: 'rgba(255, 0, 0, 0.2)'
+  },
+
+  rightTouchable: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    width: '20%',
+    height: CARD_HEIGHT * 0.75,
+    zIndex: 2,
+    backgroundColor: 'rgba(0, 255, 0, 0.2)'
+  },
+
+
 });
-
-const ProfileCard: React.FC<ProfileCardProps> = ({ onSwipeLeft, onSwipeRight, onSwipeUp }) => {
-    const [isVisible, setIsVisible] = useState(true);
-    const position = useRef(new Animated.ValueXY()).current;
-    const [bgColor, setBgColor] = React.useState<string>(getRandomColor());
-
-    const panResponder = useRef(
-        PanResponder.create({
-            onStartShouldSetPanResponder: () => true,
-            onPanResponderMove: (_, gesture: PanResponderGestureState) => {
-                // position.setValue({ x: gesture.dx, y: gesture.dy });
-                position.setValue({ x: gesture.dx, y: gesture.dy });
-            },
-
-            onPanResponderRelease: (_, gesture: PanResponderGestureState) => {
-                if (gesture.dx > SWIPE_THRESHOLD) {
-                    forceSwipe('right');
-                } else if (gesture.dx < -SWIPE_THRESHOLD) {
-                    forceSwipe('left');
-                } else if (gesture.dy < -SWIPE_THRESHOLD_VERTICAL) {
-                    forceSwipe('up');
-                } else {
-                    resetPosition();
-                }
-            },
-        })
-    ).current;
-
-    const forceSwipe = (direction: 'left' | 'right' | 'up') => {
-        let toValue;
-
-        if (direction === 'right') {
-            toValue = { x: width, y: 0 };
-        } else if (direction === 'left') {
-            toValue = { x: -width, y: 0 };
-        } else {
-            toValue = { x: 0, y: -height * 1.5 }; // or use -height if you prefer
-        }
-
-        Animated.timing(position, {
-            toValue,
-            duration: direction == 'up' ? SWIPE_OUT_DURATION_VERTICAL : SWIPE_OUT_DURATION,
-            useNativeDriver: false,
-        }).start(() => onSwipeComplete(direction));
-    };
-
-
-    const removeCard = () => {
-        setIsVisible(false);
-    };
-
-    const onSwipeComplete = (direction: 'left' | 'right' | 'up') => {
-        if (direction === 'up') {
-            onSwipeUp?.();
-        } else if (direction === 'right') {
-            onSwipeRight?.();
-        } else if (direction === 'left') {
-            onSwipeLeft?.();
-        }
-
-        removeCard(); // hide card after swipe
-    };
-
-
-    const resetPosition = () => {
-        Animated.spring(position, {
-            toValue: { x: 0, y: 0 },
-            useNativeDriver: false,
-        }).start();
-    };
-
-    // rotation effect
-    const rotate = position.x.interpolate({
-        inputRange: [-width * 2.5, 0, width * 2.5],
-        outputRange: ['-20deg', '0deg', '20deg'],
-    });
-
-    const animatedStyle = {
-        transform: [
-            { translateX: position.x },
-            { translateY: position.y },
-            { rotate },
-        ],
-    };
-
-    if (!isVisible) return null; // remove card logic
-
-    return (
-        <Animated.View
-            style={[styles.card, animatedStyle, { backgroundColor: bgColor }]}
-            {...panResponder.panHandlers}
-        >
-
-            <BasicButton
-                title={'P'}
-                textStyle={{
-                    fontSize: SMALL_BUTTON_SIZE * 3 / 4,
-                    color: themes.night
-                }}
-                containerStyle={{
-                    width: SMALL_BUTTON_SIZE,
-                    height: SMALL_BUTTON_SIZE,
-                    borderRadius: SMALL_BUTTON_SIZE / 2,
-                    backgroundColor: 'yellow',
-                    borderWidth: 2,
-                    borderColor: themes.white,
-
-                    alignSelf: 'flex-end',
-                    // top: -50
-
-                }}
-            onPress={() => forceSwipe('up')}
-            />
-
-            <Image
-                source={Images.splash.s.uri}
-                style={{
-                    width: styles.card.width * 0.9,
-                    height: styles.card.width * 0.9
-                }}
-                resizeMode="cover"
-            />
-
-
-            <View
-                style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    marginHorizontal: width / 20,
-                }}
-            >
-
-                <BasicButton
-                    title={'X'}
-                    textStyle={{
-                        fontSize: BUTTON_SIZE * 3 / 4
-                    }}
-                    containerStyle={{
-                        width: BUTTON_SIZE,
-                        height: BUTTON_SIZE,
-                        borderRadius: BUTTON_SIZE / 2,
-                        backgroundColor: 'red',
-                        borderWidth: 2,
-                        borderColor: themes.white
-                    }}
-                    onPress={() => forceSwipe('left')}
-                />
-
-                <BasicButton
-                    title={'✓'}
-                    textStyle={{
-                        fontSize: BUTTON_SIZE * 3 / 4
-                    }}
-                    containerStyle={{
-                        width: BUTTON_SIZE,
-                        height: BUTTON_SIZE,
-                        borderRadius: BUTTON_SIZE / 2,
-                        backgroundColor: 'green',
-                        borderWidth: 2,
-                        borderColor: themes.white
-                    }}
-                    onPress={() => forceSwipe('right')}
-                />
-
-            </View>
-
-        </Animated.View>
-    );
-};
 
 export default ProfileCard;
