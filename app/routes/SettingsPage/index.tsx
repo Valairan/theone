@@ -53,7 +53,7 @@ export default function Index() {
             />
             <ListItem
                 label="interests"
-                onPress={() => { router.replace('/routes/SettingsPage/interests') }}
+                onPress={() => { router.replace('/routes/Main/interests') }}
             />
         </ScrollView >
     );

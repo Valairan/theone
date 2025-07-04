@@ -37,6 +37,50 @@ const Images = {
             uri: require('../../assets/images/blurb-s.png')
         }
     },
+    m_pfp: {
+        s: {
+            imageName: 'm_pfp',
+            uri: require('../../assets/images/dummydata/m_pfp.jpg')
+        }
+    },
+    m_gallery1: {
+        s: {
+            imageName: 'm_gallery1',
+            uri: require('../../assets/images/dummydata/m_gallery1.jpg')
+        }
+    },
+
+    m_gallery2: {
+        s: {
+            imageName: 'm_gallery2',
+            uri: require('../../assets/images/dummydata/m_gallery2.jpg')
+        }
+    },
+
+    f_pfp: {
+        s: {
+            imageName: 'f_pfp',
+            uri: require('../../assets/images/dummydata/f_pfp.png')
+        }
+    },
+    f_gallery1: {
+        s: {
+            imageName: 'f_gallery1',
+            uri: require('../../assets/images/dummydata/f_gallery1.jpg')
+        }
+    },
+    f_gallery2: {
+        s: {
+            imageName: 'f_gallery2',
+            uri: require('../../assets/images/dummydata/f_gallery2.jpg')
+        }
+    },
+    f_gallery3: {
+        s: {
+            imageName: 'f_gallery3',
+            uri: require('../../assets/images/dummydata/f_gallery3.jpg')
+        }
+    },
 
 }
 
