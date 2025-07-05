@@ -40,22 +40,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle,
     }
   }
 
-  const imagesBarsToRender = [];
-  if (uris.length > 1) {
-    for (let i = 0; i < uris.length; i++) {
-      imagesBarsToRender.push(
-        <View
-          style={[styles.imageBar, {
-            width: (WIDTH * 0.7) / uris.length,
-            height: 8,
-            backgroundColor: i == imageIndex ? themes.crayola : themes.white,
-          }]}
-        />
-
-      );
-    }
-  }
-
   return (
     <View style={[styles.container, style]}>
 
@@ -75,12 +59,23 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle,
           }}
         />
 
-        <View style={styles.fakeGradientOverlay} />
+        {/* was here to increase readability of buttons and name,  */}
+        {/* <View style={styles.fakeGradientOverlay} /> */}
       </View>
 
       <View style={styles.imageBarsOverlay}>
-        {imagesBarsToRender}
+        {uris.length > 1 && uris.map((_, i) => (
+          <View
+            key={i}
+            style={[styles.imageBar, {
+              width: (WIDTH * 0.7) / uris.length,
+              height: 8,
+              backgroundColor: i === imageIndex ? themes.crayola : themes.white,
+            }]}
+          />
+        ))}
       </View>
+
 
       <View style={styles.buttonOverlayContainer}>
         <BasicButton
@@ -96,7 +91,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle,
             borderWidth: 2,
             borderColor: themes.white
           }}
-        onPress={() => onSwipe?.('left')}
+          onPress={() => onSwipe?.('left')}
         />
 
         <BasicButton
@@ -112,7 +107,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle,
             borderWidth: 2,
             borderColor: themes.white
           }}
-        onPress={() => onSwipe?.('right')}
+          onPress={() => onSwipe?.('right')}
         />
       </View>
 
@@ -121,7 +116,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle,
           title={'P'}
           textStyle={{
             fontSize: SMALL_BUTTON_SIZE * 3 / 4,
-            // color: themes.night
             color: themes.white
           }}
           containerStyle={{
@@ -207,6 +201,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
 
+  // fakeGradientOverlay not currently in use
   fakeGradientOverlay: {
     position: 'absolute',
     bottom: 0,
@@ -225,7 +220,7 @@ const styles = StyleSheet.create({
     width: '20%',
     height: CARD_HEIGHT * 0.75,
     zIndex: 2,
-    // backgroundColor: 'rgba(255, 0, 0, 0.2)'
+    // backgroundColor: 'rgba(255, 0, 0, 0.2)'  // for debugging, just to show touchable areas
   },
 
   rightTouchable: {
@@ -236,7 +231,7 @@ const styles = StyleSheet.create({
     width: '20%',
     height: CARD_HEIGHT * 0.75,
     zIndex: 2,
-    // backgroundColor: 'rgba(0, 255, 0, 0.2)'
+    // backgroundColor: 'rgba(0, 255, 0, 0.2)' // for debugging, just to show touchable areas
   },
 
 
