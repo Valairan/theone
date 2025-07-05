@@ -40,22 +40,47 @@ const Images = {
 
 
     // dummy data
-    pfp: {
+    m_pfp: {
         s: {
-            imageName: 'pfp',
-            uri: require('../../assets/images/dummydata/pfp.jpg')
+            imageName: 'm_pfp',
+            uri: require('../../assets/images/dummydata/m_pfp.jpg')
         }
     },
-    gallery1: {
+    m_gallery1: {
         s: {
-            imageName: 'gallery1',
-            uri: require('../../assets/images/dummydata/gallery1.jpg')
+            imageName: 'm_gallery1',
+            uri: require('../../assets/images/dummydata/m_gallery1.jpg')
         }
     },
-    gallery2: {
+    m_gallery2: {
         s: {
-            imageName: 'gallery2',
-            uri: require('../../assets/images/dummydata/gallery2.jpg')
+            imageName: 'm_gallery2',
+            uri: require('../../assets/images/dummydata/m_gallery2.jpg')
+        }
+    },
+
+    f_pfp: {
+        s: {
+            imageName: 'f_pfp',
+            uri: require('../../assets/images/dummydata/f_pfp.png')
+        }
+    },
+    f_gallery1: {
+        s: {
+            imageName: 'f_gallery1',
+            uri: require('../../assets/images/dummydata/f_gallery1.jpg')
+        }
+    },
+    f_gallery2: {
+        s: {
+            imageName: 'f_gallery2',
+            uri: require('../../assets/images/dummydata/f_gallery2.jpg')
+        }
+    },
+    f_gallery3: {
+        s: {
+            imageName: 'f_gallery3',
+            uri: require('../../assets/images/dummydata/f_gallery3.jpg')
         }
     },
 

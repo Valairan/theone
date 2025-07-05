@@ -20,9 +20,11 @@ interface ProfileCardProps {
   style?: object;
   titleStyle?: object;
   uris: any[];
+
+  onSwipe?: (dir: 'left' | 'right' | 'up') => void;
 }
 
-const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle, uris }) => {
+const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle, uris, onSwipe }) => {
 
   const [imageIndex, setImageIndex] = useState(0);
 
@@ -45,8 +47,8 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle,
         <View
           style={[styles.imageBar, {
             width: (WIDTH * 0.7) / uris.length,
-            height: 8, // or desired height
-            backgroundColor: i == imageIndex ? themes.crayola : themes.white, // or any color
+            height: 8,
+            backgroundColor: i == imageIndex ? themes.crayola : themes.white,
           }]}
         />
 
@@ -90,11 +92,11 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle,
             width: BUTTON_SIZE,
             height: BUTTON_SIZE,
             borderRadius: BUTTON_SIZE / 2,
-            backgroundColor: 'red',
+            backgroundColor: themes.persian,
             borderWidth: 2,
             borderColor: themes.white
           }}
-        // onPress={() => forceSwipe('left')}
+        onPress={() => onSwipe?.('left')}
         />
 
         <BasicButton
@@ -106,11 +108,11 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle,
             width: BUTTON_SIZE,
             height: BUTTON_SIZE,
             borderRadius: BUTTON_SIZE / 2,
-            backgroundColor: 'green',
+            backgroundColor: themes.celadon,
             borderWidth: 2,
             borderColor: themes.white
           }}
-        // onPress={() => forceSwipe('right')}
+        onPress={() => onSwipe?.('right')}
         />
       </View>
 
@@ -119,18 +121,19 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle,
           title={'P'}
           textStyle={{
             fontSize: SMALL_BUTTON_SIZE * 3 / 4,
-            color: themes.night
+            // color: themes.night
+            color: themes.white
           }}
           containerStyle={{
             width: SMALL_BUTTON_SIZE,
             height: SMALL_BUTTON_SIZE,
             borderRadius: SMALL_BUTTON_SIZE / 2,
-            backgroundColor: 'yellow',
+            backgroundColor: themes.blue,
             borderWidth: 2,
             borderColor: themes.white,
             alignSelf: 'flex-end',
           }}
-        // onPress={() => forceSwipe('up')}
+          onPress={() => onSwipe?.('up')}
         />
       </View>
 
@@ -210,7 +213,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: CARD_HEIGHT * 0.25,
-    backgroundColor: 'black',
+    backgroundColor: themes.night,
     opacity: 0.5,
   },
 
@@ -222,7 +225,7 @@ const styles = StyleSheet.create({
     width: '20%',
     height: CARD_HEIGHT * 0.75,
     zIndex: 2,
-    backgroundColor: 'rgba(255, 0, 0, 0.2)'
+    // backgroundColor: 'rgba(255, 0, 0, 0.2)'
   },
 
   rightTouchable: {
@@ -233,7 +236,7 @@ const styles = StyleSheet.create({
     width: '20%',
     height: CARD_HEIGHT * 0.75,
     zIndex: 2,
-    backgroundColor: 'rgba(0, 255, 0, 0.2)'
+    // backgroundColor: 'rgba(0, 255, 0, 0.2)'
   },
 
 
