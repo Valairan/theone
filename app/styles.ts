@@ -1,14 +1,9 @@
 export const styles = {
-    // Dark mode background 
-    night: '#131516',
-    // Primary Accent
-    crayola: '#EA3C53',
-    // Light mode background
-    white: '#fff',
-    // Positive interaction
-    celadon: '#ACF7C1',
-    // Secondary Accent
-    blue: '#2e86ab',
-    // Negative interaction
-    persian:'#d32f2f'
+    night: '#131516',       // Dark mode background 
+    crayola: '#ea3c53',       // Primary Accent
+    white: '#fff',          // Light mode background
+    celadon: '#acf7z1',     // Positive interaction
+    blue: '#2e86ab',        // Secondary Accent
+    persian: '#d32f2f'      // Negative interaction
+
 }

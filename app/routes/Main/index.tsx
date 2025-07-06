@@ -6,6 +6,7 @@ import Images from '@/app/ImageDatabase/images';
 import Card from '@/app/Basic/Card/CardParent';
 import { Background } from '@react-navigation/elements';
 import { TabButtonType } from '@/app/Components/Tabs/Tabs';
+import { router } from 'expo-router';
 
 enum customTab {
     yourdates,
@@ -111,7 +112,8 @@ export default function Index() {
                             <TouchableOpacity
                                 style={{
                                     flex: 1,
-                                }}>
+                                }}
+                                onPress={()=>{router.push('/routes/Main/interests')}}>
                                 <Image
                                     resizeMode='contain'
                                     source={Images.stack.s.uri}
