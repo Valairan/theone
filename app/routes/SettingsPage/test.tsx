@@ -33,13 +33,16 @@ export default function Index() {
             <ProfileCard
                 name={'Martin Ode'}
                 age={26}
-                // uris={[ Images.pfp.s.uri, Images.gallery1.s.uri, Images.gallery2.s.uri ]}
-                // uris={[ Images.pfp.s.uri, Images.gallery1.s.uri, Images.gallery2.s.uri, Images.gallery1.s.uri, Images.gallery2.s.uri ]}
-                // uris={[ Images.pfp.s.uri, Images.gallery1.s.uri, Images.gallery2.s.uri, Images.gallery1.s.uri, Images.gallery2.s.uri, Images.gallery1.s.uri, Images.gallery2.s.uri, Images.gallery1.s.uri, Images.gallery2.s.uri, Images.gallery1.s.uri, Images.gallery2.s.uri, Images.gallery1.s.uri, Images.gallery2.s.uri ]}
-                uris={[ Images.pfp.s.uri, Images.gallery1.s.uri, Images.gallery2.s.uri ]}
-                // uris={[ Images.pfp.s.uri ]}
-                // uris={[ Images.pfp.s.uri, Images.gallery1.s.uri ]}
+                uris={[Images.m_pfp.s.uri, Images.m_gallery1.s.uri, Images.m_gallery2.s.uri]}
             />
+
+            <ProfileCard
+                name='Billie Eilish'
+                age={23}
+                uris={[Images.f_pfp.s.uri, Images.f_gallery1.s.uri, Images.f_gallery2.s.uri, Images.f_gallery3.s.uri]}
+            // onSwipe={forceSwipe}
+            />
+
         </ScrollView>
     );
 
