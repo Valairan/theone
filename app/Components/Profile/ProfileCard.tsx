@@ -20,9 +20,11 @@ interface ProfileCardProps {
   style?: object;
   titleStyle?: object;
   uris: any[];
+
+  onSwipe?: (dir: 'left' | 'right' | 'up') => void;
 }
 
-const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle, uris }) => {
+const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle, uris, onSwipe }) => {
 
   const [imageIndex, setImageIndex] = useState(0);
 
@@ -95,7 +97,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle,
             borderWidth: 2,
             borderColor: themes.white
           }}
-        // onPress={() => forceSwipe('left')}
+        onPress={() => onSwipe?.('left')}
         />
 
         <BasicButton
@@ -111,7 +113,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle,
             borderWidth: 2,
             borderColor: themes.white
           }}
-        // onPress={() => forceSwipe('right')}
+        onPress={() => onSwipe?.('right')}
         />
       </View>
 
@@ -131,7 +133,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, style, titleStyle,
             borderColor: themes.white,
             alignSelf: 'flex-end',
           }}
-        // onPress={() => forceSwipe('up')}
+        onPress={() => onSwipe?.('up')}
         />
       </View>
 
