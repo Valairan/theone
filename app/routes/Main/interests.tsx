@@ -4,7 +4,7 @@ import PageHeader from '@/app/Components/Lists/PageHeader';
 import { router } from 'expo-router';
 import SwipeScreen from '@/app/Components/Interests/SwipeScreen';
 import Images from '@/app/ImageDatabase/images';
-import ProfileCard from '@/app/Components/Interests/ProfileCard';
+import ProfileCard from '@/app/Components/Profile/ProfileCard';
 
 const HEIGHT = Dimensions.get('screen').height;
 
