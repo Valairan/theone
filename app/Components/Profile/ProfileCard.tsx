@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     width: '20%',
     height: CARD_HEIGHT * 0.75,
     zIndex: 2,
-    backgroundColor: 'rgba(255, 0, 0, 0.2)'
+    // backgroundColor: 'rgba(255, 0, 0, 0.2)'
   },
 
   rightTouchable: {
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
     width: '20%',
     height: CARD_HEIGHT * 0.75,
     zIndex: 2,
-    backgroundColor: 'rgba(0, 255, 0, 0.2)'
+    // backgroundColor: 'rgba(0, 255, 0, 0.2)'
   },
 
 
