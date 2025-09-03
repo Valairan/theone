@@ -56,6 +56,10 @@ export default function Index() {
                 label="interests"
                 onPress={() => { router.replace('/routes/Main/interests') }}
             />
+            <ListItem
+                label="createadate"
+                onPress={() => { router.replace('/routes/Main/createdate') }}
+            />
         </ScrollView >
     );
 
