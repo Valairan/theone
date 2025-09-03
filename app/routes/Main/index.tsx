@@ -113,7 +113,7 @@ export default function Index() {
                                 style={{
                                     flex: 1,
                                 }}
-                                onPress={()=>{router.push('/routes/Main/interests')}}>
+                                onPress={()=>{router.push('/routes/SettingsPage')}}>
                                 <Image
                                     resizeMode='contain'
                                     source={Images.stack.s.uri}

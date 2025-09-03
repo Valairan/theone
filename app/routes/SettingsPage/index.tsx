@@ -44,8 +44,9 @@ export default function Index() {
                 label="FAQs"
                 onPress={() => { }}
             />
+            
 
-            <Text style={{ fontSize: 24 }}>testint routes below</Text>
+            <Text style={{ fontSize: 24, marginTop: 20 }}>testing below</Text>
 
             <ListItem
                 label="myprofile"
@@ -53,7 +54,7 @@ export default function Index() {
             />
             <ListItem
                 label="interests"
-                onPress={() => { router.replace('/routes/SettingsPage/interests') }}
+                onPress={() => { router.replace('/routes/Main/interests') }}
             />
         </ScrollView >
     );

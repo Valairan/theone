@@ -30,7 +30,7 @@ export default function Index() {
             />
 
             <ProfilePictureButton
-                imagePath={Images.splash.s.uri}
+                imagePath={Images.m_gallery1.s.uri}
                 containerStyle={{marginBottom: 16 }}
             />
 
